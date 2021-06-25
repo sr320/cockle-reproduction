@@ -1,0 +1,82 @@
+---
+title: "01-data-explore"
+output:
+  md_document:
+    variant: markdown_github
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+clam <- read.csv("../data/cockle_data.csv")
+```
+
+
+
+
+```{r}
+ggplot(clam, aes(`Width..cm.`,`Height..cm.`,colour=`Male.Tissue.Stage`,size=`Female.Tissue.Stage`,shape=Location))+geom_point()+
+theme_bw()+theme(panel.grid.major = element_blank(),
+                panel.grid.minor = element_blank())+scale_colour_brewer(palette = 11)
+```
+```{r}
+ggplot(clam, aes(x = Height..cm., y = Female.Tissue.Grade)) +
+  geom_point()
+```
+```{r}
+ggplot(clam, aes(x = Female.Tissue.Grade)) +
+  geom_histogram(bins = 30) +
+  facet_wrap(~Male.Tissue.Grade)
+```
+
+```{r}
+ggplot(clam, aes(x = Female.Tissue.Grade)) +
+  geom_histogram(bins = 30) +
+  facet_wrap(~Date)
+```
+```{r}
+ggplot(clam, aes(x = Male.Tissue.Grade)) +
+  geom_histogram(bins = 30) +
+  facet_wrap(~Date)
+```
+
+
+
+```{r}
+ggplot(clam, aes(`Width..cm.`,`Male.Tissue.Stage`,colour=`Male.Tissue.Stage`,size=`Female.Tissue.Stage`,shape=Location))+geom_point()+
+theme_bw()+theme(panel.grid.major = element_blank(),
+                panel.grid.minor = element_blank())+scale_colour_brewer(palette = 11) +
+  facet_wrap(~Date)
+```
+```{r}
+ggplot(clam, aes(`Width..cm.`,`Height..cm.`,colour=`Male.Tissue.Stage`,size=`Female.Tissue.Stage`,shape=Location ))+geom_point(alpha = 0.5)+
+theme_bw()+theme(panel.grid.major = element_blank(),
+                panel.grid.minor = element_blank())+scale_colour_brewer(palette = 11) +
+  facet_wrap(~Location.Type)
+  
+```
+```{r}
+ggplot(clam, aes(`Width..cm.`,`Height..cm.`,colour=`Male.Tissue.Stage`,size=`Female.Tissue.Stage`,shape=Location ))+geom_point(alpha = 0.5)+
+theme_bw()+theme(panel.grid.major = element_blank(),
+                panel.grid.minor = element_blank())+scale_colour_brewer(palette = 11) +
+  facet_wrap(~Date)
+  
+```
+
+
+
+```{r}
+ggplot(clam, aes(x = Female.Tissue.Grade, y = Male.Tissue.Grade, color = Width..cm.)) +
+  geom_point(alpha = .1) +
+  geom_jitter(size = 4, width = 0.3, height = 0.5) +
+  facet_wrap(~Date)
+```
+
+```{r}
+ggplot(clam, aes(fill=Female.Tissue.Grade, y=.Tissue.Grade, x=Date)) + 
+    geom_bar(position="stack", stat="identity")
+```
