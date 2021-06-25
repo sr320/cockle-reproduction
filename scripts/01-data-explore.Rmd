@@ -16,7 +16,7 @@ clam <- read.csv("../data/cockle_data.csv")
 ```
 
 
-
+Here is a plot
 
 ```{r}
 ggplot(clam, aes(`Width..cm.`,`Height..cm.`,colour=`Male.Tissue.Stage`,size=`Female.Tissue.Stage`,shape=Location))+geom_point()+
